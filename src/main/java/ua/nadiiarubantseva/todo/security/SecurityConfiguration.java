@@ -1,5 +1,6 @@
 package ua.nadiiarubantseva.todo.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,19 +17,12 @@ import static ua.nadiiarubantseva.todo.security.SecurityWhiteList.AUTH_WHITE_LIS
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
 
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
     private final AuthenticationProvider authenticationProvider;
-
-    public SecurityConfiguration(
-            JWTAuthorizationFilter jwtAuthorizationFilter,
-            AuthenticationProvider authenticationProvider
-    ) {
-        this.jwtAuthorizationFilter = jwtAuthorizationFilter;
-        this.authenticationProvider = authenticationProvider;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

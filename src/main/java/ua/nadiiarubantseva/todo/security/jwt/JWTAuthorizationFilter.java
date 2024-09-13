@@ -9,6 +9,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,6 +30,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static ua.nadiiarubantseva.todo.security.SecurityWhiteList.AUTH_WHITE_LIST;
 
 @Component
+@RequiredArgsConstructor
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     private static final String BEARER_PREFIX = "Bearer ";
@@ -37,10 +39,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Value("${security.jwt.secret}")
     private String jwtSecret;
-
-    public JWTAuthorizationFilter(UserService userService) {
-        this.userService = userService;
-    }
 
     @Override
     protected void doFilterInternal(

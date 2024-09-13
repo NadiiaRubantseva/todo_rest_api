@@ -41,7 +41,7 @@ public class TaskController {
     )
     @PostMapping(value = "/task", consumes = {"multipart/form-data"})
     public ResponseEntity<CreateTaskResponse> createTask(
-            @RequestPart("request") CreateTaskRequest request,  // Changed to @RequestPart
+            @RequestPart("request") CreateTaskRequest request,
             @RequestPart(value = "attachment", required = false) MultipartFile attachment,
             Principal principal
     ) throws Exception {
